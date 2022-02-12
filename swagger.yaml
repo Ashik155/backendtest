@@ -1,0 +1,83 @@
+openapi: 3.0.0
+info:
+  title: hatchWay Backend Developer Test 
+  description: Simple API
+  verison: 1.0.0
+
+
+servers:
+  - url: "http://localhost:2000/api"
+    description: A base url for every Endpoints
+
+paths:
+  /ping:
+    get:
+      tags:
+        - Working Endpoints
+      summary: Returns JSON Object having boolean Value 
+      responses:
+        '200': #status code
+          description: returns an object
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  success:
+                    type: boolean
+  /posts:
+    get:
+      tags:
+      - Working Endpoints
+      summary: Returns posts objects depending upon query paramater
+      parameters:
+        - in: query
+          name: tags
+          schema:
+            type: string
+          description: Sort data by given option
+        - in: query
+          name: sortby
+          schema:
+            type: string
+          description: Sort data by given option
+        - in: query
+          name: direction
+          schema:
+            type: string
+          description: The direction for coming 
+      responses:
+        '200': #status code
+          description: returns an array of objects
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  author:
+                    type: string
+                  authorId:
+                    type: integer
+                  likes:
+                    type: integer
+                  reads:
+                    type: integer
+                  id:
+                    type: integer
+                  popularity:
+                    type: number
+                  tags:
+                    type: array
+                    items:
+                      type: string
+        '400': #status code
+          description: returns an object
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  error:
+                    type: string
+      
+                  
